@@ -25,17 +25,19 @@ Item *criarItem(const char *nome, const char *tipo) { // adicionar parâmetros e
     return novo; 
 }
 
-void percorrerLista(Item *inicio) {
-    Item *atual = inicio; 
+
+
+void percorrerLista(Item *inicio) { // Item *inicio significa dizer que a função vai receber um ponteiro pra item
+    Item *atual = inicio; // cria um ponteiro que aponta para um Item, e recebe o endereço de memória de inicio (aponta pro mesmo nó)
     int i = 1; 
-    while (atual != NULL) {
-        printf("%d. %s (%s)\n", i, atual->nome, atual->tipo);
-        atual = atual->proximo; 
+    while (atual != NULL) { // enquanto o endereço de memória de atual for diferente de nulo
+        printf("%d. %s (%s)\n", i, atual->nome, atual->tipo); 
+        atual = atual->proximo; // atualiza a localização de memória de atual para o endereço localizado no campo proximo do item criado
         i++;
     }
 }
 
-void percorrerComAnterior(Item *inicio) {
+void percorrerComAnterior(Item *inicio) { 
     Item *atual = inicio; 
     Item *anterior = NULL;
 
