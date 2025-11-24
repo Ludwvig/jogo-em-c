@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct Item {
     char nome[40];
@@ -8,9 +9,19 @@ typedef struct Item {
     int quantidade;
     struct Item *proximo; 
 } Item;
+// ponteiro: uma variável que pode guardar o endereço do qual se refere (do lado esquerdo do *) 
+
 
 Item *inicio = NULL;
 Item *anterior = NULL;
+
+// checklist: 
+// 1- criar função que retorne um ponteiro para um Item 
+// 2- cria um ponteiro novo que pode apontar pra um Item
+// 3- verifica se tem memória 
+// 4- copia os caracteres de cada argumento e garante que o usuário só vai preencher até o penúltimo
+// 5- acessa o último caractere e coloca um '\0', fim da leitura 
+// 6- 
 
 Item *criarItem(const char *nome, const char *tipo) { // adicionar parâmetros e tipos de cada um, utilizando ponteiros
     Item *novo = malloc(sizeof(Item)); // criar espaço na memória para um ponteiro * novo do tipo Item
@@ -24,8 +35,21 @@ Item *criarItem(const char *nome, const char *tipo) { // adicionar parâmetros e
     printf("Item adicionado.\n"); 
     return novo; 
 }
-
-
+void removerItem (Item **inicio, const char *nome) {// **inicio aponta para o endereço de memória de *inicio, valor global de *inicio é alterado, não apenas Item1) {
+    Item *atual = inicio;
+    Item *anterior = NULL;
+        while (atual != NULL) { // percorre a lista
+            if (strcmp(atual->nome, nome == 0)) { // compara o dado no campo nome com o nome dado como argumento
+                // caso 1: remove o primeiro nó
+                if (anterior == NULL) {
+                    *inicio = atual->proximo; 
+                } else {
+                    // caso 2: remover no meio ou no fim
+                    anterior->proximo = atual->proximo; 
+                }
+            } 
+        }
+}
 
 void percorrerLista(Item *inicio) { // Item *inicio significa dizer que a função vai receber um ponteiro pra item
     Item *atual = inicio; // cria um ponteiro que aponta para um Item, e recebe o endereço de memória de inicio (aponta pro mesmo nó)
