@@ -18,10 +18,16 @@ Caso não receba, acusará dois possíveis erros:
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdbool.h>*/
-// 2- Cria uma struct 
-// 3- Criar dois ponteiros auxiliares: inicio e anterior, que esperam o endereço de um Item
-// 
+#include <stdbool.h>
+2- Cria uma struct 
+3- Criar dois ponteiros auxiliares: inicio e anterior, que esperam o endereço de um Item
+4- Criar função de adição
+5- Criar função de remoção
+6- Listar todos os itens 
+7- Ordenar os itens por critérios 
+8- Realizar busca binária por nome 
+9- Exitar 
+*/
 
 
 typedef struct Item {
@@ -36,14 +42,14 @@ Item *inicio = NULL;
 Item *anterior = NULL;
 
 Item *criarItem(const char *nome, const char *tipo) { 
-    Item *novo = malloc(sizeof(Item)); // cria um espaço de memória para guardar um Item
-    if (!novo) return NULL; // checar se malloc conseguiu dar um retorno válido de memória para novo
-    strncpy(novo->nome, nome, sizeof(novo->nome)-1); // acessa o campo nome, copia o argumento, força o tamanho do campo a ter 39 (com 0, 40) chars
-    novo->nome[sizeof(novo->nome)-1] = '\0'; // acessa o último char do campo nome e coloca quebra de array
-    strncpy(novo->tipo, tipo, sizeof(novo->tipo)-1); // faz a mesma coisa que pro nome 
+    Item *novo = malloc(sizeof(Item)); 
+    if (!novo) return NULL; 
+    strncpy(novo->nome, nome, sizeof(novo->nome)-1); 
+    novo->nome[sizeof(novo->nome)-1] = '\0'; 
+    strncpy(novo->tipo, tipo, sizeof(novo->tipo)-1); 
     novo->tipo[sizeof(novo->tipo)-1] = '\0';
-    novo->proximo = NULL; // acessa o campo proximo do item adicionado nessa iteração com nulo (último a ser adicionado)
-    novo->quantidade = 1; // acessa o campo quantidade do item com 1, pra simbolizar que tem apenas um dele adicionado à mochila
+    novo->proximo = NULL; 
+    novo->quantidade = 1; 
     printf("Item adicionado.\n"); 
     return novo; 
 }
