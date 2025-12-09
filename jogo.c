@@ -5,9 +5,15 @@
 
 // Definição fundamental 
 /*Ponteiro: é uma variável que guarda o endereço de memória de alguma coisa.
-Logo quando criado, aponta para um endereço aleatório e não utilizável (lixo de memória).
-É necessário apontar para um endereço de memória específico se quiser utilizá-lo devidamente.*/
-// checklist:
+-Logo quando criado, aponta para um endereço aleatório e não utilizável (lixo de memória).
+-É necessário apontar para um endereço de memória específico se quiser utilizá-lo devidamente
+-A inicialização de um ponteiro ocorre da mesma forma que com uma variável qualquer. 
+Exemplo: int numero = 8 cria uma variável numero do tipo inteiro (ou seja, espera receber uma informação avaliada em inteiro;)
+Caso não receba, acusará dois possíveis erros:
+1- Compilador vai guardar quantidade de bytes erradas para o tipo;
+2- Diz ao compilador como interpretar (ler/escrever);
+3- Previne erros ao checar tipos  .*/
+// CHECKLIST:
 /* 1- Incluir as seguintes bibliotecas: 
 #include <stdio.h>
 #include <string.h>
@@ -15,6 +21,7 @@ Logo quando criado, aponta para um endereço aleatório e não utilizável (lixo
 #include <stdbool.h>*/
 // 2- Cria uma struct 
 // 3- Criar dois ponteiros auxiliares: inicio e anterior, que esperam o endereço de um Item
+// 
 
 
 typedef struct Item {
@@ -25,13 +32,11 @@ typedef struct Item {
 } Item;
 
 
-
-
 Item *inicio = NULL;
 Item *anterior = NULL;
 
 Item *criarItem(const char *nome, const char *tipo) { 
-    Item *novo = malloc(sizeof(Item)); // 
+    Item *novo = malloc(sizeof(Item)); // cria um espaço de memória para guardar um Item
     if (!novo) return NULL; // checar se malloc conseguiu dar um retorno válido de memória para novo
     strncpy(novo->nome, nome, sizeof(novo->nome)-1); // acessa o campo nome, copia o argumento, força o tamanho do campo a ter 39 (com 0, 40) chars
     novo->nome[sizeof(novo->nome)-1] = '\0'; // acessa o último char do campo nome e coloca quebra de array
