@@ -9,7 +9,7 @@
 -É necessário apontar para um endereço de memória específico se quiser utilizá-lo devidamente
 -A inicialização de um ponteiro ocorre da mesma forma que com uma variável qualquer. 
 Exemplo: int numero = 8 cria uma variável numero do tipo inteiro (ou seja, espera receber uma informação avaliada em inteiro;)
-Caso não receba, acusará dois possíveis erros:
+Caso não receba, acusará três possíveis erros:
 1- Compilador vai guardar quantidade de bytes erradas para o tipo;
 2- Diz ao compilador como interpretar (ler/escrever);
 3- Previne erros ao checar tipos  .*/
@@ -41,18 +41,19 @@ typedef struct Item {
 Item *inicio = NULL;
 Item *anterior = NULL;
 
-Item *criarItem(const char *nome, const char *tipo) { 
+Item *criarItem(const char *nome, const char *tipo) {
     Item *novo = malloc(sizeof(Item)); 
     if (!novo) return NULL; 
-    strncpy(novo->nome, nome, sizeof(novo->nome)-1); 
-    novo->nome[sizeof(novo->nome)-1] = '\0'; 
-    strncpy(novo->tipo, tipo, sizeof(novo->tipo)-1); 
+    strncpy(novo->nome, nome, sizeof(novo->nome)-1);
+    novo->nome[sizeof(novo->nome)-1] = '\0';
+    strncpy(novo->tipo, tipo, sizeof(novo->tipo)-1);
     novo->tipo[sizeof(novo->tipo)-1] = '\0';
-    novo->proximo = NULL; 
-    novo->quantidade = 1; 
-    printf("Item adicionado.\n"); 
-    return novo; 
+    novo->proximo = inicio; 
+    inicio = novo;
 }
+
+
+
 void removerItem (Item **inicio, const char *nome) {// **inicio aponta para o endereço de memória de *inicio, valor global de *inicio é alterado, não apenas Item1) {
     Item *atual = inicio;
     Item *anterior = NULL;
