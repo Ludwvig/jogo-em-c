@@ -49,9 +49,13 @@ Item *criarItem(const char *nome, const char *tipo) {
     strncpy(novo->tipo, tipo, sizeof(novo->tipo)-1);
     novo->tipo[sizeof(novo->tipo)-1] = '\0';
     novo->proximo = inicio; 
-    inicio = novo;
+    inicio = novo; 
 }
-
+/* Observação:
+Novo->proximo = inicio: faz com que o campo "proximo" de Item passe a guardar o endereço de inicio.
+Se for o primeiro item, inicio guarda um endereço de memória nulo (NULL). 
+No entanto, depois que inicio = novo é realizado, inicio passa a guardar o endereço de memória do novo item criado;
+Assim, apontando para o novo item.*/
 
 
 void removerItem (Item **inicio, const char *nome) {// **inicio aponta para o endereço de memória de *inicio, valor global de *inicio é alterado, não apenas Item1) {
