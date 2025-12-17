@@ -51,23 +51,48 @@ Item *criarItem(const char *nome, const char *tipo) {
     novo->proximo = inicio; 
     inicio = novo; 
 }
-/* Observação:
+/* 
 Novo->proximo = inicio: faz com que o campo "proximo" de Item passe a guardar o endereço de inicio.
 Se for o primeiro item, inicio guarda um endereço de memória nulo (NULL). 
 No entanto, depois que inicio = novo é realizado, inicio passa a guardar o endereço de memória do novo item criado;
 Assim, apontando para o novo item.*/
+void percorrerLista() {
+    Item *atual = inicio;
+    int contador = 0; 
+    while (atual != NULL) {
+        contador++;
+        atual = atual->proximo;
+    }
+    atual = inicio;
+    for (int i = 0; i < contador; i++) {
+        printf("Item %d encontrado: %s", i + 1, atual->nome); // para printar a partir do 1 e não do 0
+        atual = atual->proximo;
+    }
+}
 
-
-void percorrerLista(const char *nome) {
-    Item *atual = inicio; 
-    while (atual != NULL && strcmp(atual->nome, nome)) {
-        anterior = atual;
+void percorrerLista2() {
+    Item *atual = inicio;
+    int i = 0;
+    while (atual != NULL) {
+        printf("Item %d encontrado: %s\n", i+1, atual->nome);
+        i++; 
         atual = atual->proximo; 
     }
 }
-/* atual começa guardando o endereço de inicio, que por sua vez na lista sempre vai estar à esquerda do item (se não estiver vazia).
-Dessa forma, ao escrever anterior = atual, dizemos que anterior aponta pro item à esquerda sempre. 
-Finalizando, ao escrever atual = atual->proximo, colocamos o endereço do item à direita, fazendo atual agora apontar para o próximo item.*/
+
+void acharItem(const char *nome) {
+    Item *atual = inicio; 
+    while (atual != NULL) {
+        if (strcmp(atual->nome, nome)== 0) {
+            printf("Item encontrado: %s\n", atual->nome);
+            return;
+        } else {
+        anterior = atual;
+        atual = atual->proximo; 
+        }
+    }
+}
+/* Primeiro cria um bloco capaz de percorrer a lista e depois  */
 
 
 
