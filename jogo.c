@@ -58,21 +58,7 @@ No entanto, depois que inicio = novo é realizado, inicio passa a guardar o ende
 Assim, apontando para o novo item.*/
 
 
-void removerItem (Item **inicio, const char *nome) {// **inicio aponta para o endereço de memória de *inicio, valor global de *inicio é alterado, não apenas Item1) {
-    Item *atual = inicio;
-    Item *anterior = NULL;
-        while (atual != NULL) { // percorre a lista
-            if (strcmp(atual->nome, nome == 0)) { // compara o dado no campo nome com o nome dado como argumento
-                // caso 1: remove o primeiro nó
-                if (anterior == NULL) {
-                    *inicio = atual->proximo; 
-                } else {
-                    // caso 2: remover no meio ou no fim
-                    anterior->proximo = atual->proximo; 
-                }
-            } 
-        }
-}
+
 
 void percorrerLista(Item *inicio) { // Item *inicio significa dizer que a função vai receber um ponteiro pra item
     Item *atual = inicio; // cria um ponteiro que aponta para um Item, e recebe o endereço de memória de inicio (aponta pro mesmo nó)
