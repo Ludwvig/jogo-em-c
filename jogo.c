@@ -58,54 +58,17 @@ No entanto, depois que inicio = novo é realizado, inicio passa a guardar o ende
 Assim, apontando para o novo item.*/
 
 
-
-
-void percorrerLista(Item *inicio) { // Item *inicio significa dizer que a função vai receber um ponteiro pra item
-    Item *atual = inicio; // cria um ponteiro que aponta para um Item, e recebe o endereço de memória de inicio (aponta pro mesmo nó)
-    int i = 1; 
-    while (atual != NULL) { // enquanto o endereço de memória de atual for diferente de nulo
-        printf("%d. %s (%s)\n", i, atual->nome, atual->tipo); 
-        atual = atual->proximo; // atualiza a localização de memória de atual para o endereço localizado no campo proximo do item criado
-        i++;
-    }
-}
-
-void percorrerComAnterior(Item *inicio) { 
+void percorrerLista(const char *nome) {
     Item *atual = inicio; 
-    Item *anterior = NULL;
-
-    while (atual != NULL) {
-        if (anterior == NULL) {
-            printf("Primeiro nó: %s\n", atual->nome);
-        } else {
-            printf("Anterior: %s -> Atual: %s\n", anterior->nome, atual->nome);
-        }
+    while (atual != NULL && strcmp(atual->nome, nome)) {
         anterior = atual;
         atual = atual->proximo; 
     }
 }
+/* atual começa guardando o endereço de inicio, que por sua vez na lista sempre vai estar à esquerda do item (se não estiver vazia).
+Dessa forma, ao escrever anterior = atual, dizemos que anterior aponta pro item à esquerda sempre. 
+Finalizando, ao escrever atual = atual->proximo, colocamos o endereço do item à direita, fazendo atual agora apontar para o próximo item.*/
 
-int main() {
-    for (int i = 0; i < 10; i++) {
-        char nome[40];
-        char tipo[10];
-        snprintf(nome, sizeof(nome), "Item%d", i+1);
-        snprintf(tipo, sizeof(tipo), "Item%d", i+1);
 
-        Item *novo = criarItem(nome, tipo); 
-        if (inicio == NULL) {
-            inicio = novo; 
-        } else {
-            anterior->proximo = novo;
-        } 
-        anterior = novo;
-    }
 
-    printf("\nConteúdo da mochila:\n");
-    percorrerLista(inicio);
 
-    printf("\nPercorrendo com anterior:\n");
-    percorrerComAnterior(inicio);
-
-    return 0;
-}
